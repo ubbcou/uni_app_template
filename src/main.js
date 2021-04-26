@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import App from './App'
+import platformInstall from './sdk/platform/install'
+
+Vue.use(platformInstall)
 
 Vue.config.productionTip = false
 
