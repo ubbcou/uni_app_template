@@ -1,5 +1,4 @@
 import $uni from '@/sdk/platform'
-import { DEFAULT_ENV } from '@/project.config'
 
 class StorageItem {
   /**
@@ -26,6 +25,6 @@ class StorageItem {
     return $uni.removeStorageSync(this.key)
   }
 }
-const ENV = 'Env'
+const Token = 'Token'
 
-export const locEnv = new StorageItem(ENV, process.env.VUE_APP_HOST_ENV)
+export const locToken = new StorageItem(Token, '')

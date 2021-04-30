@@ -11,6 +11,7 @@ import {
   getCurrentPage,
   getQuery,
   getScene,
+  dataToQuery,
 } from './route'
 import authorize from './authorize'
 import { toRpx, toPx } from './unit'
@@ -44,16 +45,17 @@ export default new (class CustomApi {
     })
   }
 
-  tNavigateTo = navigateTo
-  tSwitchTab = switchTab
-  tRedirectTo = redirectTo
-  tReLaunch = reLaunch
-  tNavigateBack = navigateBack
-  tAuthorize = authorize
+  navigate = navigateTo
+  switch = switchTab
+  redirect = redirectTo
+  launch = reLaunch
+  back = navigateBack
+  authorize = authorize
   getLastPage = getLastPage
   getCurrentPage = getCurrentPage
   getQuery = getQuery
   getScene = getScene
   toRpx = toRpx
   toPx = toPx
+  dataToQuery = dataToQuery
 })()

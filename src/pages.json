@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "pages/main/me/me"
+		},
+		{
+			"path": "pages/main/login/login"
 		}
 	],
 	"subPackages": [{

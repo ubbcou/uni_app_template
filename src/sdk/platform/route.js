@@ -32,11 +32,11 @@ export function reLaunch(path, data = {}, option = {}) {
 
 export function navigateBack(delta, option = {}) {
   $uni.navigateBack({
-    ...option,
     fail: () => {
-      reLaunch('/pages/local/local')
+      reLaunch('/pages/main/index/index')
     },
     delta,
+    ...option,
   })
 }
 
@@ -56,7 +56,7 @@ export function getCurrentPage() {
   return pages[pages.length - 1] || {}
 }
 
-export function dataToQuery(data) {
+export function dataToQuery(data = {}) {
   return Object.keys(data).reduce((pre, curr, index, arr) => {
     let value = data[curr]
     if (typeof value === 'object') {

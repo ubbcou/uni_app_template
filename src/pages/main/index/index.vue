@@ -1,46 +1,52 @@
 <template>
-  <view class="content">
-    <view>
-      <text class="title">{{ title }}</text>
-    </view>
+  <view class="list">
+    <view
+      v-for="o in list"
+      :key="o"
+      class="item"
+      :style="{ background: o }"
+    >{{ o }}</view>
   </view>
 </template>
 
 <script>
+import { demo } from '@/api/test'
+
 export default {
-  data() {
-    return {
-      title: 'Hello',
+  data: () => ({
+    list: [
+      'var(--cl-main)',
+      'var(--cl-sub)',
+      'var(--cl-g1)',
+      'var(--cl-g2)',
+      'var(--cl-g3)',
+      'var(--cl-g4)',
+      'var(--cl-g4)',
+      'var(--cl-g5)',
+      'var(--cl-g6)',
+      'var(--cl-g7)',
+      'var(--cl-g8)',
+      'var(--cl-g9)',
+    ],
+  }),
+  async onLoad(opt) {
+    try {
+      await demo(opt)
+    } catch (error) {
+      console.log(error)
     }
   },
-  onLoad() {
-		this.$uni.tAuthorize('werun')
-	},
   methods: {},
 }
 </script>
 
-<style>
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin: 200rpx auto 50rpx auto;
-}
-
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
+<style scoped>
+.item {
+  height: 60rpx;
+  margin: 20rpx;
+  border-radius: 12rpx;
+  color: #fff;
+  text-align: center;
+  background-color: var(--cl-main);
 }
 </style>
