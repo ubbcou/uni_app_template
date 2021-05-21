@@ -1,6 +1,9 @@
 <template>
   <view class="content">
-    <view class="block" @click="goSomePage(0)">
+    <view
+      class="block"
+      @click="goSomePage(0)"
+    >
       子页面 - 个人信息
     </view>
     <view class="block" @click="goSomePage(1)">

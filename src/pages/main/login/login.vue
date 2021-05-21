@@ -1,5 +1,8 @@
 <template>
-  <button style="margin: 120rpx;" @click="login">登录</button>
+  <button
+    style="margin: 120rpx;"
+    @click="login"
+  >登录</button>
 </template>
 
 <script>
