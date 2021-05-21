@@ -1,6 +1,53 @@
-import $uni from './index'
+/* eslint-disable no-param-reassign */
 import { queryStrToObject } from '@/utils/index'
 import { isJSON } from '@/utils/is'
+// eslint-disable-next-line import/no-cycle
+import $uni from './index'
+
+
+export function getScene() {
+  const { options } = getCurrentPages().pop()
+  const queryStr = decodeURIComponent(options.scene || '')
+  return queryStrToObject(queryStr)
+}
+
+
+/**
+ * 获取页面参数
+ * @return {Object} query对象
+ */
+ export function getQuery(jsonParse = true) {
+  const { options = {} } = getCurrentPages().pop() || {}
+  let queryData = {}
+  if (options.scene) {
+    queryData = getScene()
+  } else {
+    const keys = Object.keys(options)
+    if (keys.length) {
+      queryData = keys.reduce((pre, curr) => {
+        const str = decodeURIComponent(options[curr])
+        if (jsonParse && isJSON(str)) {
+          pre[curr] = JSON.parse(str)
+        } else {
+          pre[curr] = str
+        }
+        return pre
+      }, {})
+    }
+  }
+  return queryData
+}
+
+export function dataToQuery(data = {}) {
+  return Object.keys(data).reduce((pre, curr, index, arr) => {
+    let value = data[curr]
+    if (typeof value === 'object') {
+      value = encodeURIComponent(JSON.stringify(value))
+    }
+    pre += `${pre ? '&' : ''}${curr}=${value}`
+    return index === arr.length - 1 ? `?${pre}` : pre
+  }, '')
+}
 
 export function navigateTo(path, data = {}, option = {}) {
   $uni.navigateTo({
@@ -54,48 +101,4 @@ export function getLastPage() {
 export function getCurrentPage() {
   const pages = getCurrentPages()
   return pages[pages.length - 1] || {}
-}
-
-export function dataToQuery(data = {}) {
-  return Object.keys(data).reduce((pre, curr, index, arr) => {
-    let value = data[curr]
-    if (typeof value === 'object') {
-      value = encodeURIComponent(JSON.stringify(value))
-    }
-    pre += `${pre ? '&' : ''}${curr}=${value}`
-    return index === arr.length - 1 ? `?${pre}` : pre
-  }, '')
-}
-
-export function getScene() {
-  const { options } = getCurrentPages().pop()
-  const queryStr = decodeURIComponent(options.scene || '')
-  return queryStrToObject(queryStr)
-}
-
-/**
- * 获取页面参数
- * @return {Object} query对象
- */
-export function getQuery(jsonParse = true) {
-  const { options = {} } = getCurrentPages().pop() || {}
-  let queryData = {}
-  if (options.scene) {
-    queryData = getScene()
-  } else {
-    const keys = Object.keys(options)
-    if (keys.length) {
-      queryData = keys.reduce((pre, curr) => {
-        const str = decodeURIComponent(options[curr])
-        if (jsonParse && isJSON(str)) {
-          pre[curr] = JSON.parse(str)
-        } else {
-          pre[curr] = str
-        }
-        return pre
-      }, {})
-    }
-  }
-  console.log('NAVIGATION QUERY', queryData)
-  return queryData
 }
