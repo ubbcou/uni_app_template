@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: ['@ubbcou/vue', '@ubbcou/base'],
   rules: {
+    'no-use-before-define': ['error', { 'functions': false }],
     'vue/max-attributes-per-line': [
       2,
       {
@@ -21,5 +22,6 @@ module.exports = {
     Component: 'readonly',
     uni: 'off',
     getCurrentPages: 'readonly',
+    globalThis: 'readonly',
   },
 }

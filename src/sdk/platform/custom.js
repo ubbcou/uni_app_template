@@ -24,22 +24,24 @@ function showToast(title) {
     icon: 'none',
   })
 }
-function showModal(option) {
-  return new Promise((resolve, reject) => {
+function showModal(content, option) {
+  return new Promise((resolve) => {
     platform.showModal({
       confirmColor: '#F28100',
+      showCancel: false,
+      content,
       ...option,
       success: ({
         confirm,
       }) => {
         if (confirm) {
-          resolve()
+          resolve(true)
         } else {
-          reject(new Error('拒绝'))
+          resolve(false)
         }
       },
-      fail: err => {
-        reject(new Error(err.errMsg))
+      fail: () => {
+        resolve(false)
       },
     })
   })

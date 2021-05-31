@@ -5,6 +5,7 @@
       :key="o"
       class="item"
       :style="{ background: o }"
+      @click="test"
     >{{ o }}</view>
   </view>
 </template>
@@ -29,14 +30,11 @@ export default {
       'var(--cl-g9)',
     ],
   }),
-  async onLoad(opt) {
-    try {
-      await demo(opt)
-    } catch (error) {
-      console.log(error)
-    }
+  methods: {
+    async test() {
+      await demo()
+    },
   },
-  methods: {},
 }
 </script>
 
