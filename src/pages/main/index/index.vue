@@ -1,16 +1,33 @@
 <template>
-  <view class="list flex-center">
-    <view
-      v-for="o in list"
-      :key="o"
-      class="item flex-center"
-      :style="{ background: o }"
-      @click="test"
-    >{{ o }}</view>
+  <view class="page">
+    <view class="store">
+      <view class="store-item">
+        <view class="store-label">STATUS_BAR_HEIGHT：</view>
+        <view class="store-value">{{ STATUS_BAR_HEIGHT }}</view>
+      </view>
+      <view class="store-item">
+        <view class="store-label">SCREEN_HEIGHT：</view>
+        <view class="store-value">{{ SCREEN_HEIGHT }}</view>
+      </view>
+      <view class="store-item">
+        <view class="store-label">SCREEN_WIDTH：</view>
+        <view class="store-value">{{ SCREEN_WIDTH }}</view>
+      </view>
+    </view>
+    <view class="list flex-center">
+      <view
+        v-for="o in list"
+        :key="o"
+        class="item flex-center"
+        :style="{ background: o }"
+        @click="test"
+      >{{ o }}</view>
+    </view>
   </view>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { demo } from '@/api/test'
 
 export default {
@@ -33,6 +50,13 @@ export default {
   onLoad() {
     this.test()
   },
+  computed: {
+    ...mapGetters({
+      STATUS_BAR_HEIGHT: 'system/STATUS_BAR_HEIGHT',
+      SCREEN_HEIGHT: 'system/SCREEN_HEIGHT',
+      SCREEN_WIDTH: 'system/SCREEN_WIDTH',
+    }),
+  },
   methods: {
     async test() {
       await demo()
@@ -54,5 +78,9 @@ export default {
   color: #fff;
   text-align: center;
   background-color: var(--cl-main);
+}
+.store-item {
+  padding: 0 40rpx;
+  display: flex;
 }
 </style>
