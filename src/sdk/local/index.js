@@ -1,5 +1,3 @@
-import $uni from '@/sdk/platform'
-
 class StorageItem {
   /**
    * @param {string} key     存储键名
@@ -11,18 +9,18 @@ class StorageItem {
   }
 
   get() {
-    return $uni.getStorageSync(this.key) || this.defaultValue
+    return uni.getStorageSync(this.key) || this.defaultValue
   }
 
   set(value) {
-    return $uni.setStorageSync(
+    return uni.setStorageSync(
       this.key,
       value,
     )
   }
 
   remove() {
-    return $uni.removeStorageSync(this.key)
+    return uni.removeStorageSync(this.key)
   }
 }
 const Token = 'Token'

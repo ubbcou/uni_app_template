@@ -1,7 +1,10 @@
 import { isUrl } from '@/utils/is'
 import { locToken } from '@/sdk/local'
-import $uni from '@/sdk/platform'
 import { groupLog } from '@/utils/dev-log.js'
+import { getCurrentPage, navigate } from '@/plugin/nav'
+import { objectToQuery } from '@/utils/url'
+import { toast } from '@/plugin/toast'
+import { modal } from '@/plugin/modal'
 
 /**
  * @TODO 
@@ -10,6 +13,36 @@ import { groupLog } from '@/utils/dev-log.js'
  */
 
 const host = 'http://localhost:3000'
+const loadingQueue = new Map()
+const duration = 600
+let isLoading = false
+/**
+ * @returns timeoutID
+ */
+function createTimer() {
+  const timerId = setTimeout(() => {
+    isLoading = true
+    uni.showLoading({ title: '加载中..', mask: true })
+    loadingQueue.set(timerId, timerId)
+  }, duration)
+  return timerId
+}
+/**
+ * @param {timeoutID} timerId
+ */
+function removeTimer(timerId) {
+  clearTimeout(timerId)
+  loadingQueue.delete(timerId)
+  if (![...loadingQueue].length) {
+    isLoading = false
+  }
+}
+function assertLoading() {
+  if (![...loadingQueue].length && !isLoading) {
+    uni.hideLoading()
+  }
+}
+
 /**
  * 请求拦截
  *   √ 通常函数
@@ -22,6 +55,7 @@ export function requestInter(config) {
     ...config,
     errLevel,
     url: isUrl(url) ? url : `${host}${url}`,
+    loadingTimer: createTimer(),
     header: {
       ...config.header,
       'ubbcou-header': locToken.get(),
@@ -37,8 +71,12 @@ export function requestInter(config) {
  * @param {{ statusCode: number; data: any }} response
 */
 export function responseInter(config, response) {
-  // toast
-  // loading
+  // 清除timer，如果createTimer后到执行这段代码不足 duration 时长
+  // loading不会显示
+  if (config.loadingTimer) {
+    removeTimer(config.loadingTimer)
+    assertLoading()
+  }
   return new Promise((resolve, reject) => {
     const { statusCode, data, statusText = '' } = response
     groupLog(`${config.method} - ${config.url.split('?')[0]}`, [config, response])
@@ -51,9 +89,9 @@ export function responseInter(config, response) {
       return
     } if (statusCode === 401) {
       customMessage = '请登录'
-      const currentPage = $uni.getCurrentPage()
-      $uni.navigate('/pages/main/login/login', {
-        path: encodeURIComponent(`/${currentPage.route}${$uni.dataToQuery(currentPage.options)}`),
+      const currentPage = getCurrentPage
+      navigate('/pages/main/login/login', {
+        path: encodeURIComponent(`/${currentPage.route}?${objectToQuery(currentPage.options)}`),
       })
     } else if (statusCode === 0) {
       customMessage = '无网络'
@@ -63,9 +101,9 @@ export function responseInter(config, response) {
 
     // 自定义 errLevel，用来错误提示
     if (config.errLevel === 1) {
-      $uni.toast(errorMessage)
+      toast(errorMessage)
     } else if (config.errLevel === 2) {
-      $uni.modal(errorMessage)
+      modal(errorMessage)
     }
     reject(new Error(errorMessage))
   })

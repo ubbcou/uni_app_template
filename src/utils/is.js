@@ -12,4 +12,5 @@ export function isJSON(str) {
       return false
     }
   }
+  return false
 }

@@ -19,11 +19,11 @@ export default {
   methods: {
     async login() {
       locToken.set('token value')
-      this.$uni.back(1, {
+      this.$nav.back(1, {
         success: () => {
-          this.$uni.redirect(this.path, {
+          this.$nav.redirect(this.path, {
             fail: () => {
-              this.$uni.launch(this.path)
+              this.$nav.launch(this.path)
             },
           })
         },

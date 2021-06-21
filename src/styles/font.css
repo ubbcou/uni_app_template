@@ -1,0 +1,44 @@
+/**
+ * @file 字体声明
+ * @example <div class="baloo">ABC</div>
+ */
+
+@font-face {
+  font-family: 'Baloo';
+  src: url('https://xxx.com/Baloo2-Regular.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Baloo';
+  src: url('https://xxx.com/Baloo2-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Baloo';
+  src: url('https://xxx.com/Baloo2-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Baloo';
+  src: url('https://xxx.com/Baloo2-Medium.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Baloo';
+  src: url('https://xxx.com/Baloo2-SemiBold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Baloo';
+  src: url('https://xxx.com/Baloo2-SemiBold.ttf');
+  font-weight: 800;
+}
+
+.baloo {
+  font-family: Baloo;
+}

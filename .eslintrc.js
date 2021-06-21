@@ -20,7 +20,7 @@ module.exports = {
   globals: {
     wx: 'readonly',
     Component: 'readonly',
-    uni: 'off',
+    uni: 'readonly',
     getCurrentPages: 'readonly',
     globalThis: 'readonly',
   },

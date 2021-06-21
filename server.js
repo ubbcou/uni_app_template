@@ -13,10 +13,12 @@ const server = http.createServer((req, res) => {
     }))
   } else {
     res.statusCode = 401
-    res.end(JSON.stringify({
-      success: false,
-      data: req.headers,
-    }))
+    setTimeout(() => {
+      res.end(JSON.stringify({
+        success: false,
+        data: req.headers,
+      }))
+    }, 3000)
   }
 })
 

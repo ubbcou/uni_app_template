@@ -1,10 +1,12 @@
 import Vue from 'vue'
+import * as dayjs from 'dayjs'
+import plugin from '@/plugin'
 import App from './App'
-import platformInstall from './sdk/platform/install'
 import './global.css'
 
-Vue.use(platformInstall)
 Vue.config.productionTip = false
+Vue.use(plugin)
+dayjs.locale('zh-cn')
 
 App.mpType = 'app'
 

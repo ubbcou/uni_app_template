@@ -1,4 +1,3 @@
-import $uni from '@/sdk/platform'
 import { responseInter, requestInter } from './interceptors'
 
 // http.get(
@@ -81,7 +80,7 @@ function base(config) {
     timeout,
   } = config
   return new Promise((resolve) => {
-    $uni.request({
+    uni.request({
       url,
       header,
       method,

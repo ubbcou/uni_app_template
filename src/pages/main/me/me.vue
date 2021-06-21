@@ -28,7 +28,7 @@ export default {
         '/pages/sub/user/user',
         '/pages/extra/protocol/protocol',
       ]
-      this.$uni.navigate(theEnum[index])
+      this.$nav.navigate(theEnum[index])
     },
   },
 }

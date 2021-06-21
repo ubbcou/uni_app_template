@@ -1,13 +1,17 @@
+@import url(./styles/font.css);
+@import url(./styles/text.css);
+@import url(./styles/layout.css);
+
 page {
   --cl-main: #007aff;
   --cl-sub: #4cd964;
-  --cl-g1: #111;
-  --cl-g2: #222;
-  --cl-g3: #333;
-  --cl-g4: #444;
-  --cl-g5: #555;
-  --cl-g6: #666;
-  --cl-g7: #777;
-  --cl-g8: #888;
-  --cl-g9: #999;
+  --cl-111: #111;
+  --cl-222: #222;
+  --cl-333: #333;
+  --cl-444: #444;
+  --cl-555: #555;
+  --cl-666: #666;
+  --cl-777: #777;
+  --cl-888: #888;
+  --cl-999: #999;
 }

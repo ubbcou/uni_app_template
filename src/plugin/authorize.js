@@ -1,4 +1,7 @@
-import platform from './index'
+/**
+ * @file
+ * 微信小程序 - 授权校验
+ */
 import pkg from '~/package.json'
 
 const PROJECT_NAME = pkg.name
@@ -43,17 +46,19 @@ const scopeInfo = {
 }
 
 /**
- * 请求授权，首次申请拒绝后，将会引导用户进入设置页
+ * 求授权，首次申请拒绝后，将会引导用户进入设置页
+ * @param {String} scopeType userLocation | address | invoiceTitle | invoice | werun | record | writePhotosAlbum | camera | userInfo
  * @param {Boolean} config.isModal default true。是否使用modal引导去setting
+ * @returns Promise.resolve(Boolean)
 */
-export default async function authorize(scopeType, config = { isModal: true }) {
-  const [, userSetting] = await platform.getSetting()
+export async function authorize(scopeType, config = { isModal: true }) {
+  const [, userSetting] = await uni.getSetting()
   if (userSetting.authSetting[`scope.${scopeType}`]) {
     return true
   }
 
   try {
-    const [err] = await platform.authorize({ scope: `scope.${scopeType}` })
+    const [err] = await uni.authorize({ scope: `scope.${scopeType}` })
     if (err) {
       throw new Error(err.errMsg)
     } else {
@@ -61,13 +66,14 @@ export default async function authorize(scopeType, config = { isModal: true }) {
     }
   } catch (err) {
     if (config.isModal) {
-      const [, action] = await platform.showModal({
+      const [, action] = await uni.showModal({
         title: '提示',
-        confirmColor: '#F28100',
+        confirmColor: '#000',
         content: `${PROJECT_NAME}申请 \n「${scopeInfo[scopeType].tips}」`,
       })
       if (action.confirm) {
-        const [, userSetting] = await platform.openSetting()
+        // eslint-disable-next-line no-shadow
+        const [, userSetting] = await uni.openSetting()
         if (userSetting.authSetting[`scope.${scopeType}`]) {
           return true
         }
