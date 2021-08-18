@@ -16,7 +16,7 @@ export default {
   /**
    * get 请求
    * @param {string} url, eg: https://www.api.com/api/getUserInfo or /api/getUserInfo
-   * @param {object} data 
+   * @param {object} data
    * @param {number} config.timeout
    * @param {object} config.header
    * @param {any} config[someKey]
@@ -25,11 +25,11 @@ export default {
   get(url, data, config) {
     return requestMiddle(combineConfig(url, 'GET', data, config))
   },
-  
+
   /**
    * post 请求
    * @param {string} url, eg: https://www.api.com/api/getUserInfo or /api/getUserInfo
-   * @param {object} data 
+   * @param {object} data
    * @param {number} config.timeout
    * @param {object} config.header
    * @param {any} config[someKey]
@@ -38,11 +38,11 @@ export default {
   post(url, data, config) {
     return requestMiddle(combineConfig(url, 'POST', data, config))
   },
-  
+
   /**
    * put 请求
    * @param {string} url, eg: https://www.api.com/api/getUserInfo or /api/getUserInfo
-   * @param {object} data 
+   * @param {object} data
    * @param {number} config.timeout
    * @param {object} config.header
    * @param {any} config[someKey]
@@ -51,11 +51,11 @@ export default {
   put(url, data, config) {
     return requestMiddle(combineConfig(url, 'PUT', data, config))
   },
-  
+
   /**
    * delete 请求
    * @param {string} url, eg: https://www.api.com/api/getUserInfo or /api/getUserInfo
-   * @param {object} data 
+   * @param {object} data
    * @param {number} config.timeout
    * @param {object} config.header
    * @param {any} config[someKey]
@@ -67,8 +67,8 @@ export default {
 }
 
 /**
- * 
- * @param {*} config 
+ *
+ * @param {*} config
  * @returns {Promise<{ statusCode: number; data: any }>}
  */
 function base(config) {

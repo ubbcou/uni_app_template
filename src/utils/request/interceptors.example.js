@@ -19,7 +19,7 @@ export function responseInter(config, response) {
   const { statusCode, data } = response
   if (statusCode === 200) {
     return data
-  } 
+  }
     return Promise.reject(new Error('响应非200'))
-  
+
 }

@@ -2,11 +2,13 @@
   <button
     style="margin: 120rpx;"
     @click="login"
-  >登录</button>
+  >
+    登录
+  </button>
 </template>
 
 <script>
-import { locToken } from '@/sdk/local'
+import { locToken } from '@/utils/local'
 
 export default {
   name: 'PageLogin',

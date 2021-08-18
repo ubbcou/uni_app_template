@@ -2,16 +2,28 @@
   <view class="page">
     <view class="store">
       <view class="store-item">
-        <view class="store-label">STATUS_BAR_HEIGHT：</view>
-        <view class="store-value">{{ STATUS_BAR_HEIGHT }}</view>
+        <view class="store-label">
+          STATUS_BAR_HEIGHT：
+        </view>
+        <view class="store-value">
+          {{ STATUS_BAR_HEIGHT }}
+        </view>
       </view>
       <view class="store-item">
-        <view class="store-label">SCREEN_HEIGHT：</view>
-        <view class="store-value">{{ SCREEN_HEIGHT }}</view>
+        <view class="store-label">
+          SCREEN_HEIGHT：
+        </view>
+        <view class="store-value">
+          {{ SCREEN_HEIGHT }}
+        </view>
       </view>
       <view class="store-item">
-        <view class="store-label">SCREEN_WIDTH：</view>
-        <view class="store-value">{{ SCREEN_WIDTH }}</view>
+        <view class="store-label">
+          SCREEN_WIDTH：
+        </view>
+        <view class="store-value">
+          {{ SCREEN_WIDTH }}
+        </view>
       </view>
     </view>
     <view class="list flex-center">
@@ -21,7 +33,9 @@
         class="item flex-center"
         :style="{ background: o }"
         @click="test"
-      >{{ o }}</view>
+      >
+        {{ o }}
+      </view>
     </view>
   </view>
 </template>

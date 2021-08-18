@@ -1,6 +1,6 @@
 {
   "name": "uni-tmp",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "npm run dev:h5",
@@ -81,13 +81,10 @@
     "@dcloudio/vue-cli-plugin-uni-optimize": "^2.0.0-31820210406002",
     "@dcloudio/webpack-uni-mp-loader": "^2.0.0-31820210406002",
     "@dcloudio/webpack-uni-pages-loader": "^2.0.0-31820210406002",
-    "@ubbcou/eslint-config-base": "^0.2.0",
-    "@ubbcou/eslint-config-vue": "^0.2.0",
+    "@ubbcou/eslint-config-vue": "0.5.0",
     "@vue/babel-preset-app": "^4.5.9",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/eslint-config-standard": "^5.1.2",
-    "babel-eslint": "^10.1.0",
     "babel-plugin-import": "^1.11.0",
     "commitlint": "^11.0.0",
     "cross-env": "^7.0.2",

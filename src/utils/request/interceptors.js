@@ -1,5 +1,5 @@
 import { isUrl } from '@/utils/is'
-import { locToken } from '@/sdk/local'
+import { locToken } from '@/utils/local'
 import { groupLog } from '@/utils/dev-log.js'
 import { getCurrentPage, navigate } from '@/plugin/nav'
 import { objectToQuery } from '@/utils/url'
@@ -7,7 +7,7 @@ import { toast } from '@/plugin/toast'
 import { modal } from '@/plugin/modal'
 
 /**
- * @TODO 
+ * @TODO
  *  - toast
  *  - loading <not suggest>
  */
